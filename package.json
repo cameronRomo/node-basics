@@ -1,0 +1,23 @@
+{
+  "name": "basics",
+  "version": "1.0.0",
+  "description": "Complete Node.js Guide",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cameronRomo/node-basics.git"
+  },
+  "author": "Cameron Romo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cameronRomo/node-basics/issues"
+  },
+  "homepage": "https://github.com/cameronRomo/node-basics#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
