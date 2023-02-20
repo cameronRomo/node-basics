@@ -17,6 +17,17 @@ const errorController = require("./controllers/error");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use((req, res, next) => {
+  User.findByPk(1)
+    .then((user) => {
+      req.user = user;
+      next();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
 app.use("/admin", adminRoutes.router);
 app.use(shopRoutes);
 
@@ -26,9 +37,19 @@ Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
 User.hasMany(Product);
 
 sequelize
-  .sync({ force: true }) //For dev purposes only
+  // .sync({ force: true }) //For dev purposes only
+  .sync()
   .then((result) => {
-    // console.log("sync result >", result)
+    return User.findByPk(1);
+  })
+  .then((user) => {
+    if (!user) {
+      return User.create({ name: "Cam", email: "cam@example.com" });
+    }
+    return Promise.resolve(user);
+  })
+  .then((user) => {
+    console.log("User >", user);
     app.listen(3000);
   })
   .catch((err) => console.error(err));
