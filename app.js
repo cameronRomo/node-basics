@@ -34,7 +34,6 @@ app.use((req, res, next) => {
 
 app.use("/admin", adminRoutes.router);
 app.use(shopRoutes);
-
 app.use(errorController.get404);
 
 Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
