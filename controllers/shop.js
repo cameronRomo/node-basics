@@ -99,7 +99,6 @@ exports.postToCart = (req, res, next) => {
       }
 
       if (product) {
-        console.log("Product > ", product);
         const oldQuantity = product.cartItem.quantity;
         newQuantity = oldQuantity + 1;
         return product;
