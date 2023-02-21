@@ -34,7 +34,6 @@ app.use((req, res, next) => {
 
 app.use("/admin", adminRoutes.router);
 app.use(shopRoutes);
-
 app.use(errorController.get404);
 
 Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
@@ -60,7 +59,6 @@ sequelize
     return Promise.resolve(user);
   })
   .then((user) => {
-    console.log("User >", user);
     return user.createCart();
   })
   .then((cart) => {

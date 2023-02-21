@@ -18,7 +18,6 @@ exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
   Product.findByPk(prodId)
     .then((product) => {
-      console.log("product", product);
       res.render("shop/product-detail", {
         product,
         pageTitle: product.title,
@@ -100,7 +99,6 @@ exports.postToCart = (req, res, next) => {
       }
 
       if (product) {
-        console.log("Product > ", product);
         const oldQuantity = product.cartItem.quantity;
         newQuantity = oldQuantity + 1;
         return product;
@@ -156,7 +154,6 @@ exports.getOrders = (req, res, next) => {
   req.user
     .getOrders({ include: ["products"] })
     .then((orders) => {
-      console.log(orders);
       res.render("shop/orders", {
         path: "/orders",
         pageTitle: "Your Orders",
